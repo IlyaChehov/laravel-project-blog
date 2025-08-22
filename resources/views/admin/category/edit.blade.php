@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-warning card-outline mb-4">
-                    <form method="post" action="{{ route('admin.category.update', $category) }}">
+                    <form method="post" action="{{ route('admin.categories.update', $category) }}">
                         @csrf
                         @method('PATCH')
                         <div class="card-body">

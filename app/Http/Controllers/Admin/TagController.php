@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Tag\StoreTagRequest;
 use App\Http\Requests\Admin\Tag\UpdateTagRequest;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -34,7 +33,7 @@ class TagController extends Controller
     {
         $tagData = $request->validated();
         Tag::create($tagData);
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('admin.tags.index');
     }
 
     /**
@@ -52,7 +51,7 @@ class TagController extends Controller
     {
         $updatedTag = $request->validated();
         $tag->update($updatedTag);
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('admin.tags.index');
     }
 
     /**
@@ -61,6 +60,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('admin.tags.index');
     }
 }

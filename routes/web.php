@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,7 @@ Route::redirect('/', 'admin');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::view('/', 'admin.index')->name('index');
-    Route::resource('category', CategoryController::class)->except('show');
-    Route::resource('tag', TagController::class)->except('show');
+    Route::resource('categories', CategoryController::class)->except('show');
+    Route::resource('tags', TagController::class)->except('show');
+    Route::resource('posts', PostController::class);
 });

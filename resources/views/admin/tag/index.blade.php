@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
-                        <a href="{{ route('admin.tag.create') }}" class="btn btn-warning">Добавить</a>
+                        <a href="{{ route('admin.tags.create') }}" class="btn btn-warning">Добавить</a>
                     </div> <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -40,10 +40,10 @@
                                 <td>{{ $tag->title }}</td>
                                 <td>{{ $tag->meta_desc }}</td>
                                 <td class="d-flex gap-2 align-items-center">
-                                    <a href="{{ route('admin.tag.edit', $tag) }}" class="btn btn-primary">
+                                    <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-primary">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
-                                    <form action="{{ route('admin.tag.destroy', $tag) }}" method="post">
+                                    <form action="{{ route('admin.tags.destroy', $tag) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger" type="submit">

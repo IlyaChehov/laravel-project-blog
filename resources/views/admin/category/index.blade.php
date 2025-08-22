@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
-                        <a href="{{ route('admin.category.create') }}" class="btn btn-warning">Добавить</a>
+                        <a href="{{ route('admin.categories.create') }}" class="btn btn-warning">Добавить</a>
                     </div> <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -40,10 +40,10 @@
                                 <td>{{ $category->title }}</td>
                                 <td>{{ $category->meta_desc }}</td>
                                 <td class="d-flex gap-2 align-items-center">
-                                    <a href="{{ route('admin.category.edit', $category) }}" class="btn btn-primary">
+                                    <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
-                                    <form action="{{ route('admin.category.destroy', $category) }}" method="post">
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger" type="submit">

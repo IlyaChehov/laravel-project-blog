@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="card card-warning card-outline mb-4">
-                    <form method="post" action="{{ route('admin.tag.store') }}">
+                    <form method="post" action="{{ route('admin.tags.store') }}">
                         @csrf
                         <div class="card-body">
                             <div class="mb-3">

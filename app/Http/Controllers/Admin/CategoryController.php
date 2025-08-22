@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Category\StoreTagRequest;
-use App\Http\Requests\Admin\Category\UpdateTagRequest;
+use App\Http\Requests\Admin\Category\StoreCategoryRequest;
+use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 use App\Models\Category;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -33,11 +31,11 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTagRequest $request): RedirectResponse
+    public function store(StoreCategoryRequest $request): RedirectResponse
     {
         $categoryData = $request->validated();
         Category::create($categoryData);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -51,11 +49,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTagRequest $request, Category $category): RedirectResponse
+    public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
         $updatedCategory = $request->validated();
         $category->update($updatedCategory);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -64,6 +62,6 @@ class CategoryController extends Controller
     public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categories.index');
     }
 }
