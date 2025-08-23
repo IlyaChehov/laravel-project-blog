@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">Категории</a></li>
                         <li class="breadcrumb-item">Изменение категории</li>
                     </ol>
                 </div>

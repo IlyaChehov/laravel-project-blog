@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.posts.index') }}">Посты</a></li>
                         <li class="breadcrumb-item">Создание поста</li>
                     </ol>
                 </div>
@@ -60,7 +61,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="content" class="form-label">Контент поста</label>
-                                        <textarea name="content" id="content"
+                                        <textarea name="content" id="content" rows="10"
                                                   class="form-control ckeditor @error('content') is-invalid @enderror"
                                                   aria-label="With textarea">{{ old('content') }}</textarea>
                                         @error('content')
@@ -90,6 +91,27 @@
                                         </div>
                                         @enderror
                                     </div>
+{{--                                    <div class="mb-3">--}}
+{{--                                        <label for="tags" class="form-label">Теги</label>--}}
+{{--                                        <select name="tags"--}}
+{{--                                                class="form-select @error('tags') is-invalid @enderror"--}}
+{{--                                                id="tags">--}}
+{{--                                            @foreach($categories as $category)--}}
+{{--                                                <option @selected(old('tags') == $category->id) value="{{ $category->id }}">{{ $category->title }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('tags')--}}
+{{--                                        <div id="tags" class="invalid-feedback">--}}
+{{--                                            {{ $message }}--}}
+{{--                                        </div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+
+                                    <div class="mb-3">
+                                        <input type="hidden" id="feature_image" name="preview_img" value="">
+                                        <a href="" class="popup_selector btn btn-primary" data-inputid="feature_image">Превью</a>
+                                    </div>
+                                    <div class="mb-3 preview"></div>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-warning">Создать</button>

@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\Post\StorePostRequest;
 use App\Http\Requests\Admin\Post\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -18,7 +17,8 @@ class PostController extends Controller
     public function index(): View
     {
         $posts = Post::query()->with('category')->get();
-        return view('admin.post.index', compact('posts'));
+        $postCountTrash = Post::onlyTrashed()->count();
+        return view('admin.post.index', compact('posts', 'postCountTrash'));
     }
 
     /**
@@ -74,5 +74,31 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('admin.posts.index');
+    }
+
+    public function basket()
+    {
+        $posts = Post::onlyTrashed()->with('category')->get();
+        return view('admin.post.basket', compact('posts'));
+    }
+
+    public function basketRestore(string $id)
+    {
+        $post = Post::onlyTrashed()->where('slug', $id);
+        if (!$post) {
+            abort(404);
+        }
+        $post->restore();
+        return redirect()->route('admin.posts.basket');
+    }
+
+    public function basketDestroy(string $id)
+    {
+        $post = Post::onlyTrashed()->where('slug', $id);
+        if (!$post) {
+            abort(404);
+        }
+        $post->forceDelete();
+        return redirect()->route('admin.posts.basket');
     }
 }

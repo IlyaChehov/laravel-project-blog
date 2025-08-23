@@ -21,7 +21,12 @@
             <div class="row">
                 <div class="card card-warning card-outline mb-4">
                     <div class="card-header">
-                        <a href="{{ route('admin.posts.create') }}" class="btn btn-warning">Добавить</a>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('admin.posts.create') }}" class="btn btn-warning">Добавить</a>
+                            <a href="{{ route('admin.posts.basket') }}" type="button" class="btn btn-danger">
+                                Удаленные <span class="badge text-bg-warning">{{ $postCountTrash }}</span>
+                            </a>
+                        </div>
                     </div> <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered">

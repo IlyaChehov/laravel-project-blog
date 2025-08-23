@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.posts.index') }}">Посты</a></li>
                         <li class="breadcrumb-item">Изменение поста</li>
                     </ol>
                 </div>
@@ -91,6 +92,15 @@
                                         </div>
                                         @enderror
                                     </div>
+                                    <div class="mb-3">
+                                        <input type="hidden" id="feature_image" name="preview_img" value="">
+                                        <a href="" class="popup_selector btn btn-primary" data-inputid="feature_image">Превью</a>
+                                    </div>
+                                    @if($post->preview_img)
+                                        <div class="mb-3 preview">
+                                            <img src="/{{ $post->preview_img }}" width="250" alt="Превью">
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-warning">Изменить</button>

@@ -26,7 +26,8 @@ class StorePostRequest extends FormRequest
             'excerpt' => 'required|string|max:255',
             'meta_desc' => 'nullable|string|max:255',
             'content' => 'required|string',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'preview_img' => 'nullable|string'
         ];
     }
 }
