@@ -79,7 +79,7 @@
                                     <div class="mb-3">
                                         <label for="category_id" class="form-label">Категория</label>
                                         <select name="category_id"
-                                                class="form-select @error('category_id') is-invalid @enderror"
+                                                class="form-select js-example-basic-single @error('category_id') is-invalid @enderror"
                                                 id="category_id">
                                             @foreach($categories as $category)
                                                 <option @selected(old('category_id') == $category->id) value="{{ $category->id }}">{{ $category->title }}</option>
@@ -91,21 +91,21 @@
                                         </div>
                                         @enderror
                                     </div>
-{{--                                    <div class="mb-3">--}}
-{{--                                        <label for="tags" class="form-label">Теги</label>--}}
-{{--                                        <select name="tags"--}}
-{{--                                                class="form-select @error('tags') is-invalid @enderror"--}}
-{{--                                                id="tags">--}}
-{{--                                            @foreach($categories as $category)--}}
-{{--                                                <option @selected(old('tags') == $category->id) value="{{ $category->id }}">{{ $category->title }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                        @error('tags')--}}
-{{--                                        <div id="tags" class="invalid-feedback">--}}
-{{--                                            {{ $message }}--}}
-{{--                                        </div>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
+                                    <div class="mb-3">
+                                        <label for="tags" class="form-label">Теги</label>
+                                        <select name="tags[]"
+                                                class="form-select js-example-basic-multiple @error('tags') is-invalid @enderror"
+                                                id="tags" multiple="multiple">
+                                            @foreach($tags as $tag)
+                                                <option @selected( !is_null(old('tags')) && in_array($tag->id, old('tags')) ) value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tags')
+                                        <div id="tags" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
 
                                     <div class="mb-3">
                                         <input type="hidden" id="feature_image" name="preview_img" value="">

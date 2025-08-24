@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Post\StorePostRequest;
 use App\Http\Requests\Admin\Post\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -18,6 +19,7 @@ class PostController extends Controller
     {
         $posts = Post::query()->with('category')->get();
         $postCountTrash = Post::onlyTrashed()->count();
+
         return view('admin.post.index', compact('posts', 'postCountTrash'));
     }
 
@@ -27,7 +29,9 @@ class PostController extends Controller
     public function create(): View
     {
         $categories = Category::all(['id', 'title']);
-        return view('admin.post.create', compact('categories'));
+        $tags = Tag::all(['id', 'title']);
+
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -36,17 +40,16 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $postData = $request->validated();
-        Post::create($postData);
+        $newPost = Post::query()->create($postData);
+        $newPost->tags()->sync($postData['tags'] ?? []);
+
         return redirect()->route('admin.posts.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -54,7 +57,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all(['id', 'title']);
-        return view('admin.post.edit', compact('post', 'categories'));
+        $tags = Tag::all(['id', 'title']);
+
+        return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -64,6 +69,8 @@ class PostController extends Controller
     {
         $updatedPost = $request->validated();
         $post->update($updatedPost);
+        $post->tags()->sync($updatedPost['tags'] ?? []);
+
         return redirect()->route('admin.posts.index');
     }
 
@@ -73,32 +80,36 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+
         return redirect()->route('admin.posts.index');
     }
 
     public function basket()
     {
         $posts = Post::onlyTrashed()->with('category')->get();
+
         return view('admin.post.basket', compact('posts'));
     }
 
     public function basketRestore(string $id)
     {
         $post = Post::onlyTrashed()->where('slug', $id);
-        if (!$post) {
+        if (! $post) {
             abort(404);
         }
         $post->restore();
+
         return redirect()->route('admin.posts.basket');
     }
 
     public function basketDestroy(string $id)
     {
         $post = Post::onlyTrashed()->where('slug', $id);
-        if (!$post) {
+        if (! $post) {
             abort(404);
         }
         $post->forceDelete();
+
         return redirect()->route('admin.posts.basket');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return array(
 
     'route' => [
         'prefix' => 'elfinder',
-        'middleware' => array('web'), //Set to null to disable middleware filter
+        'middleware' => ['web'], // Set to null to disable middleware filter
     ],
 
     /*
@@ -76,8 +76,8 @@ return array(
     |
     */
 
-    'options' => array(),
-    
+    'options' => [],
+
     /*
     |--------------------------------------------------------------------------
     | Root Options
@@ -87,9 +87,9 @@ return array(
     | See https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options-2.1#root-options
     |
     */
-    'root_options' => array(
-        'tmbPath' => __DIR__ . '/../public/uploads/tmb',
-        'tmbURL' => '/uploads/tmb'
-    ),
+    'root_options' => [
+        'tmbPath' => __DIR__.'/../public/uploads/tmb',
+        'tmbURL' => '/uploads/tmb',
+    ],
 
-);
+];

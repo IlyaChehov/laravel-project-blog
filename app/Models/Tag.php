@@ -12,12 +12,14 @@ class Tag extends Model
     use Sluggable;
 
     protected $table = 'tags';
+
     protected $fillable
         = [
             'title',
             'slug',
             'meta_desc',
         ];
+
     public $timestamps = false;
 
     public function posts(): BelongsToMany
@@ -29,7 +31,7 @@ class Tag extends Model
     protected function title(): Attribute
     {
         return Attribute::make(
-            set: fn(string $value) => mb_ucfirst(mb_strtolower($value)),
+            set: fn (string $value) => mb_ucfirst(mb_strtolower($value)),
         );
     }
 

@@ -13,6 +13,7 @@ class Category extends Model
     use Sluggable;
 
     protected $table = 'categories';
+
     protected $fillable
         = [
             'title',
@@ -28,7 +29,7 @@ class Category extends Model
     protected function title(): Attribute
     {
         return Attribute::make(
-            set: fn(string $value) => mb_ucfirst(mb_strtolower($value)),
+            set: fn (string $value) => mb_ucfirst(mb_strtolower($value)),
         );
     }
 
@@ -46,10 +47,10 @@ class Category extends Model
         ];
     }
 
-//    protected static function booted()
-//    {
-//        static::creating(function ($category) {
-//            $category->slug = Str::slug($category->title, '-');
-//        });
-//    }
+    //    protected static function booted()
+    //    {
+    //        static::creating(function ($category) {
+    //            $category->slug = Str::slug($category->title, '-');
+    //        });
+    //    }
 }

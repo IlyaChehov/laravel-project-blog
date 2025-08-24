@@ -17,6 +17,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         $categories = Category::all();
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -35,6 +36,7 @@ class CategoryController extends Controller
     {
         $categoryData = $request->validated();
         Category::create($categoryData);
+
         return redirect()->route('admin.categories.index');
     }
 
@@ -53,6 +55,7 @@ class CategoryController extends Controller
     {
         $updatedCategory = $request->validated();
         $category->update($updatedCategory);
+
         return redirect()->route('admin.categories.index');
     }
 
@@ -62,6 +65,7 @@ class CategoryController extends Controller
     public function destroy(Category $category): RedirectResponse
     {
         $category->delete();
+
         return redirect()->route('admin.categories.index');
     }
 }

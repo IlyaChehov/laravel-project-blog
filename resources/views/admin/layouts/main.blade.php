@@ -21,6 +21,7 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('libs/colorbox/colorbox.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/adminlte.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         .cke_notification.cke_notification_warning {
             display: none;
@@ -102,6 +103,8 @@
 <script src="{{ asset('libs/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('libs/colorbox/jquery.colorbox-min.js') }}"></script>
 <script src="{{ asset('packages/barryvdh/elfinder/js/standalonepopup.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{ asset('assets/admin/js/main.js') }}"></script>
 </body>
 
 </html>

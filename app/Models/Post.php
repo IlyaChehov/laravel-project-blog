@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,8 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes, Sluggable;
+    use Sluggable, SoftDeletes;
+
     protected $table = 'posts';
+
     protected $fillable = [
         'title',
         'meta_desc',
@@ -19,7 +22,7 @@ class Post extends Model
         'excerpt',
         'content',
         'category_id',
-        'preview_img'
+        'preview_img',
     ];
 
     public function category(): BelongsTo
@@ -44,5 +47,15 @@ class Post extends Model
                 'source' => 'title',
             ],
         ];
+    }
+
+    public function getDate(): string
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', (string) $this->created_at)->format('d F, Y');
+    }
+
+    public function getImage(): string
+    {
+        return $this->preview_img ?? asset('assets/img/no-img.jpg');
     }
 }
