@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Admin\Tag;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class StoreTagRequest extends FormRequest
+class UserAuthRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::check() && Auth::user()->isAdmin();
+        return true;
     }
 
     /**
@@ -23,8 +22,8 @@ class StoreTagRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'meta_desc' => 'nullable|string|max:255',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:6',
         ];
     }
 }

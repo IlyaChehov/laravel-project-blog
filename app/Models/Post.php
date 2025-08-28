@@ -49,13 +49,13 @@ class Post extends Model
         ];
     }
 
-    public function getDate(): string
+    public function getDate(string $format): string
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', (string) $this->created_at)->format('d F, Y');
+        return Carbon::createFromFormat('Y-m-d H:i:s', (string) $this->created_at)->format($format);
     }
 
     public function getImage(): string
     {
-        return $this->preview_img ?? asset('assets/img/no-img.jpg');
+        return asset($this->preview_img ?? 'assets/img/no-img.jpg');
     }
 }
